@@ -1,0 +1,845 @@
+openapi: 3.0.0
+info:
+  title: grupohoteles
+  version: '1.0'
+  contact:
+    name: Grupo Hoteles
+    url: medellin47.com
+  description: "Descripción de todas las API's del sitio hecho en angular"
+servers:
+  - url: 'http://149.56.131.236:8000'
+paths:
+  /reserve/v2:
+    post:
+      summary: Crear reserva
+      operationId: post-reserve-v2
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                number_of_guests:
+                  type: string
+                initial_date:
+                  type: string
+                final_date:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                email:
+                  type: string
+                document_type:
+                  type: string
+                number_of_document:
+                  type: string
+                cell_phone_number:
+                  type: string
+                room_type:
+                  type: string
+                hotel:
+                  type: string
+                price:
+                  type: string
+        description: ''
+  /hotel:
+    post:
+      summary: consultar hotel
+      operationId: post-hotel
+      responses:
+        '200':
+          description: OK
+      description: Busca en la base de datos el hotel que hace la petición
+  /hotel/navbar:
+    post:
+      summary: consultar navbar del hotel
+      operationId: post-hotel-navbar
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hotel:
+                  type: string
+        description: ''
+  /hotel/sidebar:
+    post:
+      summary: consultar sidebar del hotel
+      operationId: post-hotel-sidebar
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hotel:
+                  type: string
+  /room_type/addv2:
+    post:
+      summary: agregar tipo de habitación
+      operationId: post-room_type-addv2
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                accommodation:
+                  type: string
+                price:
+                  type: string
+                number_of_guests:
+                  type: string
+                hotel:
+                  type: string
+                description:
+                  type: string
+                wifi:
+                  type: string
+                parking:
+                  type: string
+                breakfast:
+                  type: string
+                photo:
+                  type: string
+                '':
+                  type: string
+  /room_type/list:
+    post:
+      summary: consultar tipo de habitaciones
+      operationId: post-room_type-list
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hotel:
+                  type: string
+        description: ''
+  /room_type/detail:
+    post:
+      summary: Consultar detalle de tipo de habitación
+      operationId: post-room_type-detail
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hotel:
+                  type: string
+                id_room_type:
+                  type: string
+  /room_type/update:
+    post:
+      summary: actualizar tipo de habitación
+      operationId: post-room_type-update
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                accommodation:
+                  type: string
+                price:
+                  type: string
+                number_of_guests:
+                  type: string
+                description:
+                  type: string
+                wifi:
+                  type: string
+                parking:
+                  type: string
+                breakfast:
+                  type: string
+                id_room_type:
+                  type: string
+                bar:
+                  type: string
+                fan:
+                  type: string
+                hot_water:
+                  type: string
+                tv:
+                  type: string
+                phone:
+                  type: string
+                sound:
+                  type: string
+  /room_type/delete:
+    post:
+      summary: Eliminar tipo de habitación
+      operationId: post-room_type-delete
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_room_type:
+                  type: string
+                hotel:
+                  type: string
+        description: ''
+  /auth/v3:
+    post:
+      summary: Inicio de sesión
+      operationId: post-auth-v3
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: string
+                password:
+                  type: string
+                hotel:
+                  type: string
+                id_hotel:
+                  type: string
+  /block_room_type/v2:
+    post:
+      summary: bloquear fecha
+      operationId: post-block_room_type-v2
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  date:
+                    type: string
+                  hotel:
+                    type: string
+                  room_type:
+                    type: string
+  /blocked_dates/v2:
+    post:
+      summary: Consultar fechas bloqueadas
+      operationId: post-blocked_dates-v2
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hotel:
+                  type: string
+  /delete_bloked_date:
+    post:
+      summary: Eliminar fechas bloqueadas
+      operationId: post-delete_bloked_date
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_room_type_dates:
+                  type: string
+  /accommodation/add:
+    post:
+      summary: agregar acomodación
+      operationId: post-accommodation-add
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  hotel:
+                    type: string
+  /accommodation/list:
+    post:
+      summary: ''
+      operationId: post-accommodation-list
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hotel:
+                  type: string
+  /accommodation/delete:
+    post:
+      summary: Eliminar acomodación
+      operationId: post-accommodation-delete
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_accommodation:
+                  type: string
+  /room/add:
+    post:
+      summary: agregar habitación
+      operationId: post-room-add
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                room_number:
+                  type: string
+                hotel:
+                  type: string
+                room_type:
+                  type: string
+  /room/list:
+    post:
+      summary: Consultar habitaciones
+      operationId: post-room-list
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hotel:
+                  type: string
+  /room/update:
+    post:
+      summary: Actualizar habitación
+      operationId: post-room-update
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                room_number:
+                  type: string
+                hotel:
+                  type: string
+                room_type:
+                  type: string
+                id_room:
+                  type: string
+  /room/delete:
+    post:
+      summary: Eliminar habitación
+      operationId: post-room-delete
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_room:
+                  type: string
+                hotel:
+                  type: string
+  /room/detail:
+    post:
+      summary: Detalle de habitación
+      operationId: post-room-detail
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hotel:
+                  type: string
+                id_room:
+                  type: string
+  /reserves/list:
+    post:
+      summary: Consultar Reservas
+      operationId: post-reserves
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hotel:
+                  type: string
+    parameters: []
+  /reserves/update:
+    post:
+      summary: Actualizar reserva
+      operationId: post-reserves-update
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  number_of_guests:
+                    type: string
+                  initial_date:
+                    type: string
+                  final_date:
+                    type: string
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  email:
+                    type: string
+                  document_type:
+                    type: string
+                  number_of_document:
+                    type: string
+                  room:
+                    type: string
+                  id_reserve:
+                    type: string
+  /reserves/delete:
+    post:
+      summary: Eliminar reserva
+      operationId: post-reserves-delete
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_reserve:
+                  type: string
+                hotel:
+                  type: string
+  /reserves/detail:
+    post:
+      summary: Detalle de reserva
+      operationId: post-reserves-detail
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hotel:
+                  type: string
+                id_reserve:
+                  type: string
+        description: ''
+  /calls:
+    post:
+      summary: Agregar llamada
+      operationId: post-calls
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  number:
+                    type: string
+                  hotel:
+                    type: string
+                  name:
+                    type: string
+  /calls/list:
+    post:
+      summary: Consultar llamadas
+      operationId: post-calls-list
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hotel:
+                  type: string
+  /calls/delete:
+    post:
+      summary: Eliminar llamada
+      operationId: post-calls-delete
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hotel:
+                    type: string
+                  id:
+                    type: string
+  /calls/called:
+    post:
+      summary: Actualizar llamadas realizadas
+      operationId: post-calls-called
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_call:
+                  type: string
+        description: ''
+  /rate/hotel/questions:
+    post:
+      summary: Preguntas de hotel
+      operationId: post-rate
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hotel:
+                    type: string
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hotel:
+                    type: string
+    parameters: []
+  /rate/receptionists/questions:
+    post:
+      summary: Preguntas recepcionistas
+      operationId: post-rate-receptionists-questions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hotel:
+                    type: string
+  /rate/receptionists:
+    post:
+      summary: Consultar recepcionistas
+      operationId: post-rate-receptionists
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hotel:
+                    type: string
+  /rate/answer:
+    post:
+      summary: Agregar calificación
+      operationId: post-rate-answer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hotel:
+                    type: string
+                  question:
+                    type: string
+                  answer:
+                    type: string
+                  receptionist:
+                    type: string
+      description: ''
+  /rate/rating/type:
+    post:
+      summary: Tipo de calificación
+      operationId: post-rate-rating-type
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hotel:
+                    type: string
+  /rate/add:
+    post:
+      summary: Agregar calificación
+      operationId: post-rate-add
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hotel:
+                    type: string
+                  comment:
+                    type: string
+                  question1:
+                    type: string
+                  question2:
+                    type: string
+                  question3:
+                    type: string
+                  question4:
+                    type: string
+                  name:
+                    type: string
+                  number:
+                    type: string
+  /rate/add/question:
+    post:
+      summary: Crear pregunta para calificaciones
+      operationId: post-rate-add-question
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  receptionist:
+                    type: string
+                  hotel:
+                    type: string
+                  question:
+                    type: string
+  /rate/update/question:
+    post:
+      summary: Actualizar pregunta de calificaciones
+      operationId: post-rate-update-question
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id_question:
+                    type: string
+                  question:
+                    type: string
+  /rate/answer/staff:
+    post:
+      summary: Consultar recepcionistas
+      operationId: post-rate-answer-staff
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hotel:
+                  type: string
+    parameters: []
+  /rate/staff/update:
+    post:
+      summary: Actualizar información de recepcionista
+      operationId: post-rate-staff-update
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id_staff:
+                    type: string
+                  name:
+                    type: string
+                  last_name:
+                    type: string
+  /availability/v5:
+    post:
+      summary: Buscar disponibilidades
+      operationId: post-availability-v5
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  initial_date:
+                    type: string
+                  final_date:
+                    type: string
+                  hotel:
+                    type: string
+                  room_type:
+                    type: string
+  /admin/hotel/settings/carousel/rooms:
+    post:
+      summary: Consultar imágenes slider
+      operationId: post-admin-hotel-settings
+      responses:
+        '200':
+          description: OK
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+    parameters: []
+  /admin/hotel/settings/carousel/rooms/update:
+    post:
+      summary: Actualizar imágenes de slider
+      operationId: post-admin-hotel-settings-carousel-rooms-update
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hotel:
+                    type: string
+                  img:
+                    type: string
+                  id_img:
+                    type: string
+                  current_time:
+                    type: string
+  /admin/hotel/settings/carousel/checkout:
+    post:
+      summary: Consultar imágenes del slider del checkout
+      operationId: post-admin-hotel-settings-carousel-checkout
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
+  /admin/hotel/settings/carousel/checkout/update:
+    post:
+      summary: id_imgActualizar imagenes del checkout
+      operationId: post-admin-hotel-settings-carousel-checkout-update
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hotel:
+                    type: string
+                  img:
+                    type: string
+                  id_img:
+                    type: string
+      description: ''
+components:
+  schemas: {}
+  securitySchemes: {}
